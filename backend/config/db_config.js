@@ -13,35 +13,31 @@ const pool = new Pool({
 const createTables = async () => {
   const createRecipesTableQuery = `
     CREATE TABLE IF NOT EXISTS recipes (
-      id SERIAL PRIMARY KEY,
-      title VARCHAR(255) NOT NULL,
-      ingredients TEXT NOT NULL,
-      instructions TEXT NOT NULL,
-      image_data BYTEA,
-      created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+        id SERIAL PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        image_data BYTEA, -- For storing binary image data
+        created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
     );
   `;
 
   const createIngredientsTableQuery = `
     CREATE TABLE IF NOT EXISTS ingredients (
-      id SERIAL PRIMARY KEY,
-      recipe_id INTEGER NOT NULL,
-      ingredient VARCHAR(255) NOT NULL,
-      quantity NUMERIC NOT NULL,
-      unit VARCHAR(50),
-      CONSTRAINT ingredients_recipe_id_fkey FOREIGN KEY (recipe_id)
-          REFERENCES recipes (id) ON UPDATE NO ACTION ON DELETE CASCADE
+        id SERIAL PRIMARY KEY,
+        recipe_id INTEGER NOT NULL,
+        ingredient VARCHAR(255) NOT NULL,
+        quantity DECIMAL NOT NULL,
+        unit VARCHAR(50),
+        FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE
     );
   `;
 
   const createInstructionsTableQuery = `
     CREATE TABLE IF NOT EXISTS instructions (
-      id SERIAL PRIMARY KEY,
-      recipe_id INTEGER NOT NULL,
-      step_number INTEGER NOT NULL,
-      direction TEXT NOT NULL,
-      CONSTRAINT instructions_recipe_id_fkey FOREIGN KEY (recipe_id)
-          REFERENCES recipes (id) ON UPDATE NO ACTION ON DELETE CASCADE
+        id SERIAL PRIMARY KEY,
+        recipe_id INTEGER NOT NULL,
+        step_number INTEGER NOT NULL,
+        direction TEXT NOT NULL,
+        FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE
     );
   `;
 

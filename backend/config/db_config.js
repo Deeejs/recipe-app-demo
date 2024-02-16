@@ -17,6 +17,7 @@ const createTables = async () => {
       title VARCHAR(255) NOT NULL,
       ingredients TEXT NOT NULL,
       instructions TEXT NOT NULL,
+      image_data BYTEA,
       created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
     );
   `;

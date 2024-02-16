@@ -41,7 +41,7 @@ Before setting up the project, please ensure you have the following installed on
 
 3. **Configure Environment Variables**
 
-   Use the `.env.example` file in the backend directory. Fill it with your PostgreSQL credentials and the API base URL as follows:
+   Use the `.env.example` file in the backend directory to create your `.env` file. Fill it with your PostgreSQL credentials and database information.
 
    ```env
    DB_USER=postgres
@@ -52,10 +52,6 @@ Before setting up the project, please ensure you have the following installed on
    ```
 
    Replace `<your-database-password>` with your actual PostgreSQL database password.
-
-   ```env
-
-   ```
 
 4. **Set Up the Frontend**
 
@@ -69,6 +65,16 @@ Before setting up the project, please ensure you have the following installed on
 
    ```bash
    npm install
+   ```
+
+5. **Configure Environment Variables**
+
+   Use the `.env.example` file in the root frontend directory to create your `.env` file
+   Set the REACT API URL for the backend. Replace the value with the URL where the Node.js server is running.
+   Besure to include the `/api` at the end of the URL.
+
+   ```env
+   REACT_APP_API_BASE_URL=http://localhost:4000/api
    ```
 
 ### Running the Application
